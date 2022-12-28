@@ -5,4 +5,8 @@ b6edff674e35452d6c57ec64177a558f7adb432e/moscowSubway.json`;
 
 const stations = [];
 
-console.log('hello!');
+fetch(api)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Все линии и станции: ", data);
+    });
