@@ -15,6 +15,9 @@ fetch(api)
         })
     });
 
+    const searchInput = document.querySelector(".search");
+    const searchOptions = document.querySelector(".options");
+
     const getOptions = (word, stations) => {
         return stations.filter(s => {
             const regex = new RegExp(word, "gi");
@@ -23,4 +26,19 @@ fetch(api)
     }
 
  
+    function displayOptions() {
+        console.log(this.value);
+        const options = getOptions(this.value, stations);
 
+        const html = options.map(station => {
+            return `<li><span>${station.name}</span></li>`;
+        })
+        .slice(0, 10)
+        .join("");
+
+        searchOptions.innerHTML = html;
+       }
+    
+      
+    searchInput.addEventListener("change", displayOptions);
+    searchInput.addEventListener("keyup", displayOptions);
