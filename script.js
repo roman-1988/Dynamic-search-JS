@@ -9,4 +9,18 @@ fetch(api)
     .then(response => response.json())
     .then(data => {
         console.log("Все линии и станции: ", data);
+
+        data.forEach(line => {
+            stations.push(...line.stations);
+        })
     });
+
+    const getOptions = (word, stations) => {
+        return stations.filter(s => {
+            const regex = new RegExp(word, "gi");
+            return s.name.match(regex);
+        })
+    }
+
+ 
+
