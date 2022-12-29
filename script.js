@@ -31,12 +31,18 @@ fetch(api)
         const options = getOptions(this.value, stations);
 
         const html = options.map(station => {
-            return `<li><span>${station.name}</span></li>`;
+
+            const regex = new RegExp(this.value, "gi");
+            const stationName = station.name.replace(regex,
+                  `<span class="hl">${this.value}</span>` 
+                )
+
+            return `<li><span>${stationName}</span></li>`;
         })
         .slice(0, 10)
         .join("");
 
-        searchOptions.innerHTML = html;
+        searchOptions.innerHTML = this.value ? html : null;
        }
     
       
